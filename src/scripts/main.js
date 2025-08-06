@@ -18,6 +18,8 @@ const food = {
   },
 };
 
+const tree = document.getElementById('tree');
+
 function createTree(element, data) {
   if (!data || typeof data !== 'object') return;
 
@@ -37,4 +39,4 @@ function createTree(element, data) {
   element.appendChild(ul);
 }
 
-createTree(tree, food); 
+createTree(tree, food);
