@@ -27,7 +27,6 @@ function createTree(element, data) {
     const li = document.createElement('li');
     li.textContent = key;
 
-    // Якщо значення ключа — непорожній об’єкт, викликаємо createTree рекурсивно
     if (typeof data[key] === 'object' && Object.keys(data[key]).length > 0) {
       createTree(li, data[key]);
     }
@@ -38,4 +37,4 @@ function createTree(element, data) {
   element.appendChild(ul);
 }
 
-createTree(tree, food); // де tree — це DOM-елемент, наприклад <div id="tree"></div>
+createTree(tree, food); 
