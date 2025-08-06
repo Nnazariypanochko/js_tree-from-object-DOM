@@ -1,6 +1,5 @@
 'use strict';
 
-
 const food = {
   Drink: {
     Wine: {},
@@ -20,37 +19,23 @@ const food = {
 };
 
 function createTree(element, data) {
-    const ul = document.createElement('ul');
-    element.appendChild(ul);
+  if (!data || typeof data !== 'object') return;
 
-    for (const key1 in data) {
-        const li1 = document.createElement('li');
-        li1.textContent = key1;
-        ul.appendChild(li1);
+  const ul = document.createElement('ul');
 
-        const ul2 = document.createElement('ul');
-        li1.appendChild(ul2);
+  for (const key in data) {
+    const li = document.createElement('li');
+    li.textContent = key;
 
-        for (const key2 in data[key1]) {
-            const li2 = document.createElement('li');
-            li2.textContent = key2;
-            ul2.appendChild(li2);
-
-            const ul3 = document.createElement('ul');
-            li2.appendChild(ul3);
-
-            for (const key3 in data[key1][key2]) {
-                const li3 = document.createElement('li');
-                li3.textContent = key3;
-                ul3.appendChild(li3);
-            }
-        }
+    // Якщо значення ключа — непорожній об’єкт, викликаємо createTree рекурсивно
+    if (typeof data[key] === 'object' && Object.keys(data[key]).length > 0) {
+      createTree(li, data[key]);
     }
+
+    ul.appendChild(li);
+  }
+
+  element.appendChild(ul);
 }
-createTree(tree, food);
 
-
-
-
-
-
+createTree(tree, food); // де tree — це DOM-елемент, наприклад <div id="tree"></div>
